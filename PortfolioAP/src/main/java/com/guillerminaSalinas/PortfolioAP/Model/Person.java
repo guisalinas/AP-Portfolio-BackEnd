@@ -13,7 +13,7 @@ public class Person {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private String surname;
     private String about_me;
@@ -23,7 +23,7 @@ public class Person {
     
     public Person (){}
     
-    public Person(int id, String name, String surname, String about_me, String email, String photo_url, String description){
+    public Person(Long id, String name, String surname, String about_me, String email, String photo_url, String description){
         this.id = id;
         this.name = name;
         this.surname = surname;

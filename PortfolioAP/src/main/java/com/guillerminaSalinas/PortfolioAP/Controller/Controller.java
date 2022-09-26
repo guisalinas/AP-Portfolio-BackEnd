@@ -1,9 +1,12 @@
 package com.guillerminaSalinas.PortfolioAP.Controller;
 
 import com.guillerminaSalinas.PortfolioAP.Model.Person;
-import java.util.ArrayList;
+import com.guillerminaSalinas.PortfolioAP.services.IPersonServices;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,20 +15,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
     
-    List<Person> personList = new ArrayList();
+    @Autowired
+    private IPersonServices P_service;
     
-    //crear persona
     @PostMapping("/new/person")
     public void addPerson(@RequestBody Person p){
-        personList.add(p);
+        P_service.createPerson(p);
     }
-    
-    //mostrar lista de personas
+   
     @GetMapping("/get/person")
     @ResponseBody
     public List<Person> getPersonList(){
-        return personList;
+        return P_service.getPersons();
     }
             
-    
+    @DeleteMapping("/delete/{id}")
+    public void deletePerson(@PathVariable Long id){
+        P_service.deletePerson(id);
+    }
 }
