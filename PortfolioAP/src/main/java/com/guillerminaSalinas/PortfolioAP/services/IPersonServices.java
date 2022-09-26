@@ -8,7 +8,7 @@ public interface IPersonServices {
     public List<Person> getPersons();
     public void createPerson(Person p);
     public void deletePerson(Long id);
-    public Person findPerson(Long id); 
-    
+    public Person findPerson(Long id);
+    public void updatePerson(Person p);
     
 }

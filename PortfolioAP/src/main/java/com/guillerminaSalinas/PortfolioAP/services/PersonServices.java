@@ -1,4 +1,3 @@
-
 package com.guillerminaSalinas.PortfolioAP.services;
 
 import com.guillerminaSalinas.PortfolioAP.Model.Person;
@@ -32,7 +31,10 @@ public class PersonServices implements IPersonServices{
     public Person findPerson(Long id) {
         return P_repository.findById(id).orElse(null);
     }
-    
-    
-    
+
+    @Override
+    public void updatePerson(Person p) {
+        P_repository.save(p);
+    }
+        
 }
