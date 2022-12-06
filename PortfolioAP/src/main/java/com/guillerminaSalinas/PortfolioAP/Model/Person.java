@@ -1,6 +1,9 @@
 package com.guillerminaSalinas.PortfolioAP.Model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,10 +14,12 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
 @Entity
+@Getter
+@Setter
 @Table(name= "Persons")
-public class Person {
+public class Person implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,18 +33,27 @@ public class Person {
     private String photo_url;
     @Column(nullable = false)
     private String description;  
-    @OneToMany(mappedBy= "person_id")
-    private List<JobExperience> job_experience;
+    
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy= "person_id")
+    private List<JobExperience> job_experience = new ArrayList<JobExperience>();
+    
     @OneToMany(mappedBy= "person_id")
     private List<Skill> skills;
+    
     @OneToMany(mappedBy= "person_id")
     private List<Education> education;
+    
     @OneToMany(mappedBy= "person_id")
-    private List<Proyect> proyects;
+    private List<Project> projects;
     
     public Person (){}
+    
+    public Person(Long id) {
+        super();
+        this.id = id;
+    }
 
-    public Person(Long id, String name, String surname, String about_me, String email, String photo_url, String description, List<JobExperience> job_experience, List<Skill> skills, List<Education> education, List<Proyect> proyects) {
+    public Person(Long id, String name, String surname, String about_me, String email, String photo_url, String description, List<JobExperience> job_experience, List<Skill> skills, List<Education> education, List<Project> projects) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -50,8 +64,9 @@ public class Person {
         this.job_experience = job_experience;
         this.skills = skills;
         this.education = education;
-        this.proyects = proyects;
-    }    
+        this.projects = projects;
+    } 
+    
 }
 
 

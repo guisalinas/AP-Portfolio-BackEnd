@@ -20,22 +20,20 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String Skill_name;
-    private String description;
+    private int porcent;
     
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Person_id")
+    @ManyToOne
     private Person person_id;
 
     public Skill(){
     }
-    
-    public Skill(Long id, String Skill_name, String description, Person personId) {
+
+    public Skill(Long id, String Skill_name, int porcent, Person person_id) {
         this.id = id;
         this.Skill_name = Skill_name;
-        this.description = description;
-        this.person_id = personId;
+        this.porcent = porcent;
+        this.person_id = person_id;
     }
-    
+     
     
 }
