@@ -14,7 +14,8 @@ public class JobExperienceService implements IJobExperienceService {
 
     @Override
     public List<JobExperience> getJobExperiences() {
-        return JE_repository.findAll();
+        List<JobExperience> JobExperiencesList = JE_repository.findAll();
+      return JobExperiencesList;
     }
 
     @Override

@@ -36,8 +36,8 @@ public class JobExperience implements Serializable{
     private String job_name;
     private String logo_url;
 
-    @JoinColumn(name="person_id", nullable = false)
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name="person_id", referencedColumnName="id", nullable = false)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Person person_id;   
 
     public JobExperience(){

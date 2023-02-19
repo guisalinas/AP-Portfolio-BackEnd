@@ -1,7 +1,6 @@
 package com.guillerminaSalinas.PortfolioAP.Model;
 
 import com.sun.istack.NotNull;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +22,7 @@ public class User {
     @NotNull
     private String password;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="fk_person")
+    @OneToOne
+    @JoinColumn(name="person_id")
     private Person person_id;
 }
