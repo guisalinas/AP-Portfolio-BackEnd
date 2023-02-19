@@ -26,21 +26,19 @@ public class Project {
     private String project_url;
     private String photo_url;
     
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="idPerson")
-    private Person person_id;
+    private Person person;
 
     public Project() {
     }
 
-    public Project(Long id, String proyect_name, String description, String project_url, String photo_url, Person person_id) {
+    public Project(Long id, String proyect_name, String description, String project_url, String photo_url, Person person) {
         this.id = id;
         this.proyect_name = proyect_name;
         this.description = description;
         this.project_url = project_url;
         this.photo_url = photo_url;
-        this.person_id = person_id;
+        this.person = person;
     }
 
     

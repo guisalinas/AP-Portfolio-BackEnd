@@ -21,18 +21,17 @@ public class Skill {
     private Long id;
     private String Skill_name;
     private int porcent;
-    
-    @ManyToOne
-    private Person person_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Person person;
 
     public Skill(){
     }
 
-    public Skill(Long id, String Skill_name, int porcent, Person person_id) {
+    public Skill(Long id, String Skill_name, int porcent, Person person) {
         this.id = id;
         this.Skill_name = Skill_name;
         this.porcent = porcent;
-        this.person_id = person_id;
+        this.person = person;
     }
      
     

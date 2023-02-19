@@ -4,10 +4,12 @@ import com.guillerminaSalinas.PortfolioAP.services.Interfaces.IJobExperienceServ
 import com.guillerminaSalinas.PortfolioAP.Model.JobExperience;
 import com.guillerminaSalinas.PortfolioAP.repository.IJobExperienceRepository;
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class JobExperienceService implements IJobExperienceService {
     @Autowired
     public IJobExperienceRepository JE_repository;

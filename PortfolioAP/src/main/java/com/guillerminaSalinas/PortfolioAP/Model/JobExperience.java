@@ -35,15 +35,16 @@ public class JobExperience implements Serializable{
     private String description;
     private String job_name;
     private String logo_url;
-
-    @JoinColumn(name="person_id", referencedColumnName="id", nullable = false)
-    @ManyToOne(cascade = CascadeType.MERGE)
-    private Person person_id;   
+    
+    
+    /*@JoinColumn(name="person_id", referencedColumnName="id", nullable = false)*/
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Person person;  
 
     public JobExperience(){
     }
 
-    public JobExperience(Long id, String company_name, Date start_date, Date finish_date, String description, String job_name, String logo_url, Person person_id) {
+    public JobExperience(Long id, String company_name, Date start_date, Date finish_date, String description, String job_name, String logo_url, Person person) {
         this.id = id;
         this.company_name = company_name;
         this.start_date = start_date;
@@ -51,7 +52,7 @@ public class JobExperience implements Serializable{
         this.description = description;
         this.job_name = job_name;
         this.logo_url = logo_url;
-        this.person_id = person_id;
+        this.person = person;
     } 
     
 }

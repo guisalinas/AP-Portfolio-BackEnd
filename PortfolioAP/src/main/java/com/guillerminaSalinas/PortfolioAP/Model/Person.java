@@ -1,11 +1,15 @@
 package com.guillerminaSalinas.PortfolioAP.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,19 +39,20 @@ public class Person implements Serializable {
     @Column(nullable = false)
     private String description;  
     
-    @OneToOne(mappedBy="person_id")
+    @OneToOne(mappedBy = "person_id")
     private User user;
     
-    @OneToMany(mappedBy= "person_id")
-    private List<JobExperience> job_experience = new ArrayList<JobExperience>();
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "person")
+    @JsonIgnore
+    private List<JobExperience> job_experiences;
     
-    @OneToMany(mappedBy= "person_id")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "person")
     private List<Skill> skills;
     
-    @OneToMany(mappedBy= "person_id")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "person")
     private List<Education> education;
      
-    @OneToMany(mappedBy= "person_id")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "person")
     private List<Project> projects;
     
     public Person (){}
@@ -57,7 +62,7 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public Person(Long id, String name, String surname, String about_me, String email, String photo_url, String description, List<JobExperience> job_experience, List<Skill> skills, List<Education> education, List<Project> projects, User user) {
+    public Person(Long id, String name, String surname, String about_me, String email, String photo_url, String description, List<JobExperience> job_experiences, List<Skill> skills, List<Education> education, List<Project> projects, User user) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -65,7 +70,7 @@ public class Person implements Serializable {
         this.email = email;
         this.photo_url = photo_url;
         this.description = description;
-        this.job_experience = job_experience;
+        this.job_experiences = job_experiences;
         this.skills = skills;
         this.education = education;
         this.projects = projects;

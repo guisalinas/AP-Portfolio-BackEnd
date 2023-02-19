@@ -2,6 +2,7 @@ package com.guillerminaSalinas.PortfolioAP.Model;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,14 +28,14 @@ public class Education {
     @Temporal(TemporalType.DATE)
     private Date finish_date;
     private String logo_url;
-    @ManyToOne
-    private Person person_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Person person;
 
     public Education() {
 
     }
 
-    public Education(Long id, String course_name, String institute_name, String description, Date start_date, Date finish_date, String logo_url, Person person_id) {
+    public Education(Long id, String course_name, String institute_name, String description, Date start_date, Date finish_date, String logo_url, Person person) {
         this.id = id;
         this.course_name = course_name;
         this.institute_name = institute_name;
@@ -42,7 +43,7 @@ public class Education {
         this.start_date = start_date;
         this.finish_date = finish_date;
         this.logo_url = logo_url;
-        this.person_id = person_id;
+        this.person = person;
     }
 
 }
